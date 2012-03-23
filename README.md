@@ -9,11 +9,15 @@ with .appendChild.
 Installation
 ------------
 
+```bash
     npm install htmlr
+```
 
 For use in the browser, include the following script tag:
 
+```html
     <script src="htmlr.js"></script>
+```
 
 Usage
 -----
