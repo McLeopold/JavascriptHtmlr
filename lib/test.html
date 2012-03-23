@@ -11,73 +11,84 @@
     var spot = document.getElementById('spot');    
     
     /* testing */
-    with (Htmlr) {
-      var data_table = (
-        table({border: 1, cellpadding: 4},
-          thead(extract('fields')(
-            tr(each()(
-              th('{0}')
-            ))
-          )),
-          tbody(extract('values')(each()(
-            tr(each()(
-              td('{0}')
-            ))
-          ))),
-          tfoot
-        )
-      );
+    var test1 = function (count) {
+      for (var i = count; i > 0; --i) {
+	    with (Htmlr) {
+	      var data_table = (
+	        table({border: 1, cellpadding: 4},
+	          thead(extract('fields')(
+	            tr(each()(
+	              th('{0}')
+	            ))
+	          )),
+	          tbody(extract('values')(each()(
+	            tr(each()(
+	              td('{0}')
+	            ))
+	          ))),
+	          tfoot
+	        )
+	      );
+	    };
+	    var data = {
+	      fields: ['id', 'name'],
+	      values: [[1, 'scott'],
+	               [2, 'mike']]
+	    };
+	    // console.log(data_table.display(0, data));
+	    var table = data_table.renderDOM(data);
+	    spot.appendChild(table);
+	    spot.removeChild(table);
+      }
     };
-    var data = {
-      fields: ['id', 'name'],
-      values: [[1, 'scott'],
-               [2, 'mike']]
+    
+    var test2 = function () {
+	    with (Htmlr) {
+	      var data_list = ul(each()(li('{0}')));
+	    }
+	    spot.appendChild(data_list.renderDOM(data.fields));
+	    
+	    with (Htmlr) {
+	      var data2_table = (
+	        table({border: 1, cellpadding: 4},
+	          thead(extract(0)(
+	            tr(each()(
+	              th('{key}')
+	            ))
+	          )),
+	          tbody(each()(
+	            tr(each()(
+	              td('{value}')
+	            ))
+	          ))
+	        )
+	      );
+	    };
+	    var data2 = [{id: 1, name: 'scott'},
+	                 {id: 2, name: 'mike'}];
+	    // console.log(data2_table.display(0, data2));
+	    spot.appendChild(data2_table.renderDOM(data2));
     };
-    console.log(data_table.display(0, data));    
-    spot.appendChild(data_table.render(data));
     
-    with (Htmlr) {
-      var data_list = ul(each()(li('{0}')));
-    }
-    spot.appendChild(data_list.render(data.fields));
-    
-    with (Htmlr) {
-      var data2_table = (
-        table({border: 1, cellpadding: 4},
-          thead(extract(0)(
-            tr(each()(
-              th('{key}')
-            ))
-          )),
-          tbody(each()(
-            tr(each()(
-              td('{value}')
-            ))
-          ))
-        )
-      );
+    var test3 = function () {
+	    with (Htmlr) {
+	      var data_form = (
+	        form({class: 'my_form'},
+	          'Enter Name: ', text({name: 'one', value: '{name}'}), br,
+	          'Select Age: ', select(
+	            each(2, 35)(
+	                option({selected: 'selected'}, '{0}')
+	            ),
+	            option(15)
+	          )
+	        )
+	      );
+	    }
+	    var data3 = {name: 'scott', age: 35};
+	    // console.log(data_form.display(0, data3));
+	    spot.appendChild(data_form.renderDOM(data3));
     };
-    var data2 = [{id: 1, name: 'scott'},
-                 {id: 2, name: 'mike'}];
-    console.log(data2_table.display(0, data2));
-    spot.appendChild(data2_table.render(data2));
     
-    with (Htmlr) {
-      var data_form = (
-        form({class: 'my_form'},
-          'Enter Name: ', text({name: 'one', value: '{name}'}), br,
-          'Select Age: ', select(
-            each(2, 35)(
-                option({selected: 'selected'}, '{0}')
-            ),
-            option(15)
-          )
-        )
-      );
-    }
-    var data3 = {name: 'scott', age: 35};
-    console.log(data_form.display(0, data3));
-    spot.appendChild(data_form.render(data3));
     </script>
   </body>
 </html>
