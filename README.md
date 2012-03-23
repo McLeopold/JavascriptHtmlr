@@ -10,44 +10,63 @@ Installation
 ------------
 
 ```bash
-    npm install htmlr
+npm install htmlr
 ```
 
 For use in the browser, include the following script tag:
 
 ```html
-    <script src="htmlr.js"></script>
+<script src="htmlr.js"></script>
 ```
 
 Usage
 -----
 
 ```javascript
-    with (Htmlr) {
-      var template = doctype(
-        html(
-          head({lang: 'en'},
-            meta({charset: 'utf-8'}),
-            title('{title}'),
-            css('style.css'),
-            javascript('script.js')
-          ),
-          body(
-            h1("Hello World!"),
-            comment("woot!"),
-            div({id: 'content'}, '{0}')
-          )
-        )
-      );
-    }
+with (Htmlr) {
+  var template = doctype(
+    html(
+      head({lang: 'en'},
+        meta({charset: 'utf-8'}),
+        title('{title}'),
+        css('style.css'),
+        javascript('script.js')
+      ),
+      body(
+        h1("Hello World!"),
+        comment("woot!"),
+        div({id: 'content'}, '{0}')
+      )
+    )
+  );
+}
 
-    var data = {title: "My Title"};
-    
-    // create server side string or for browser .innerHTML
-    var html = template.render(data);
-    
-    // create browser side DOM
-    var dom = template.renderDOM(data);
+var data = {title: "My Title", content: "My Content"};
+
+// create server side string or for browser .innerHTML
+var html = template.render(data);
+
+// create browser side DOM
+var dom = template.renderDOM(data);
+```
+
+```html
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="utf-8" />
+    <title>My Title</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    <!--woot!-->
+    <div id="content">
+      My Content
+    </div>
+  </body>
+</html>
 ```
 
 Features
@@ -55,11 +74,16 @@ Features
 
 1.  Use the `with` statement to prevent pollution of the global namespace
 
-         with (Htmlr) {
-           var template = div();
-         }    
-         var html = template.render();
-         // <div />
+```javascript
+with (Htmlr) {
+  var template = div();
+}    
+var html = template.render();
+```
+
+```html
+<div />
+```
 
 2.  Use an object as the first parameter to set attributes
 
