@@ -18,6 +18,7 @@ For use in the browser, include the following script tag:
 Usage
 -----
 
+```javascript
     with (Htmlr) {
       var template = doctype(
         html(
@@ -43,6 +44,7 @@ Usage
     
     // create browser side DOM
     var dom = template.renderDOM(data);
+```
 
 Features
 --------
