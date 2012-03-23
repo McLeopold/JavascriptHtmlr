@@ -101,7 +101,7 @@ Features
 3.  Use any other data type for the first paramter and all data types afterward
     for child nodes
    
-   ```javascript
+    ```javascript
     with (Htmlr) {
       var template = div('Literal String', br, 1337);
     }   
