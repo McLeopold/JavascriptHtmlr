@@ -74,16 +74,16 @@ Features
 
 1.  Use the `with` statement to prevent pollution of the global namespace
 
-```javascript
-with (Htmlr) {
-  var template = div();
-}    
-var html = template.render();
-```
-
-```html
-<div />
-```
+    ```javascript
+    with (Htmlr) {
+      var template = div();
+    }    
+    var html = template.render();
+    ```
+    
+    ```html
+    <div />
+    ```
 
 2.  Use an object as the first parameter to set attributes
 
