@@ -11,7 +11,10 @@
     var spot = document.getElementById('spot');    
     
     /* testing */
-    var test1 = function (count) {
+    var test1a = function (count, remove) {
+      if (remove === undefined || count > 1) {
+        remove = true;
+      }
       for (var i = count; i > 0; --i) {
 	    with (Htmlr) {
 	      var data_table = (
@@ -38,9 +41,49 @@
 	    // console.log(data_table.display(0, data));
 	    var table = data_table.renderDOM(data);
 	    spot.appendChild(table);
-	    spot.removeChild(table);
+	    if (remove) {
+          spot.removeChild(table);
+	    }
       }
     };
+    // test1a(1, false);
+
+    var test1b = function (count, remove) {
+      if (remove === undefined || count > 1) {
+        remove = true;
+      }
+      for (var i = count; i > 0; --i) {
+        with (Htmlr) {
+          var data_table = (
+            table({border: 1, cellpadding: 4},
+              thead(extract('fields')(
+                tr(each()(
+                  th('{0}')
+                ))
+              )),
+              tbody(extract('values')(each()(
+                tr(each()(
+                  td('{0}')
+                ))
+              ))),
+              tfoot
+            )
+          );
+        };
+        var data = {
+          fields: ['id', 'name'],
+          values: [[1, 'scott'],
+                   [2, 'mike']]
+        };
+        // console.log(data_table.display(0, data));
+        var table = data_table.render(data);
+        spot.innerHTML = table;
+        if (remove) {
+          spot.innerHTML = "";
+        }
+      }
+    };
+    // test1b(1, false);
     
     var test2 = function () {
 	    with (Htmlr) {

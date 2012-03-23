@@ -1,0 +1,24 @@
+{
+  "name": "htmlr",
+  "description": "DSL for html generation on the server or in the browser",
+  "version": "0.1.0",
+  "author": "Scott Hamilton",
+  "maintainers": [
+    {
+      "name": "McLeopold",
+      "email": "mcleopold@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/McLeopold/JavascriptHtmlr.git"
+  },
+  "directories": { "lib": "./lib" },
+  "main": "./lib/htmlr.js",
+  "licenses": [
+    {
+      "type": "BSD",
+      "url": "http://github.com/McLeopold/JavascriptHtmlr/blob/master/LICENSE"
+    }
+  ]
+}
