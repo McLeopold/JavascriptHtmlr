@@ -227,35 +227,35 @@ Features
 6.  Includes the ability to extracts parts of the data object
 
     ```javascript
-   with (Htmlr) {
-     var template1 = div(extract('error')(
-       'Error',
-       span('{number}'),
-       ': ',
-       span('{message}')
-     ));
-   }
-   var data1 = {error: {number: 42, message: 'unknown question'}};
-   var html1 = template1.render(data1);
-   ```
+    with (Htmlr) {
+      var template1 = div(extract('error')(
+        'Error',
+        span('{number}'),
+        ': ',
+        span('{message}')
+      ));
+    }
+    var data1 = {error: {number: 42, message: 'unknown question'}};
+    var html1 = template1.render(data1);
+    ```
    
-   ```html
-   <div>Error <span>42</span>: <span>unknown question</span></div>
-   ```
+    ```html
+    <div>Error <span>42</span>: <span>unknown question</span></div>
+    ```
    
-   `extract` can reach into multiple levels of data structure
+    `extract` can reach into multiple levels of data structure
    
-   ```javascript
-   with (Htmlr) {
-     var template2 = extract(1, 0)(div('{0}'));
-   }
-   var data2 = [[[0, 1], [2, 3]], [[4, 5], [6, 7]]];
-   var html = template2.render(data2);
-   ```
+    ```javascript
+    with (Htmlr) {
+      var template2 = extract(1, 0)(div('{0}'));
+    }
+    var data2 = [[[0, 1], [2, 3]], [[4, 5], [6, 7]]];
+    var html = template2.render(data2);
+    ```
    
-   ```html
-   <div>4</div>
-   ```
+    ```html
+    <div>4</div>
+    ```
 
 Known Issues
 ------------
