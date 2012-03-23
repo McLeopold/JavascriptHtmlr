@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="utf-8" />
+    <title>test</title>
+  </head>
+  <body>
+    <div id="spot"></div>
+    <script src="htmlr.js"></script>
+    <script>
+    var spot = document.getElementById('spot');    
+    
+    /* testing */
+    with (Htmlr) {
+      var data_table = (
+        table({border: 1, cellpadding: 4},
+          thead(extract('fields')(
+            tr(each()(
+              th('{0}')
+            ))
+          )),
+          tbody(extract('values')(each()(
+            tr(each()(
+              td('{0}')
+            ))
+          ))),
+          tfoot
+        )
+      );
+    };
+    var data = {
+      fields: ['id', 'name'],
+      values: [[1, 'scott'],
+               [2, 'mike']]
+    };
+    console.log(data_table.display(0, data));    
+    spot.appendChild(data_table.render(data));
+    
+    with (Htmlr) {
+      var data_list = ul(each()(li('{0}')));
+    }
+    spot.appendChild(data_list.render(data.fields));
+    
+    with (Htmlr) {
+      var data2_table = (
+        table({border: 1, cellpadding: 4},
+          thead(extract(0)(
+            tr(each()(
+              th('{key}')
+            ))
+          )),
+          tbody(each()(
+            tr(each()(
+              td('{value}')
+            ))
+          ))
+        )
+      );
+    };
+    var data2 = [{id: 1, name: 'scott'},
+                 {id: 2, name: 'mike'}];
+    console.log(data2_table.display(0, data2));
+    spot.appendChild(data2_table.render(data2));
+    
+    with (Htmlr) {
+      var data_form = (
+        form({class: 'my_form'},
+          'Enter Name: ', text({name: 'one', value: '{name}'}), br,
+          'Select Age: ', select(
+            each(2, 35)(
+                option({selected: 'selected'}, '{0}')
+            ),
+            option(15)
+          )
+        )
+      );
+    }
+    var data3 = {name: 'scott', age: 35};
+    console.log(data_form.display(0, data3));
+    spot.appendChild(data_form.render(data3));
+    </script>
+  </body>
+</html>
