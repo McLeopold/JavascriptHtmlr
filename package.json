@@ -1,8 +1,8 @@
 {
   "name": "htmlr",
-  "description": "DSL for html generation on the server or in the browser",
+  "description": "DSL for html generation in the browser or templates on the server",
   "version": "0.1.0",
-  "author": "Scott Hamilton",
+  "author": "McLeopold",
   "maintainers": [
     {
       "name": "McLeopold",
