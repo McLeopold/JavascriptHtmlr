@@ -14,7 +14,11 @@
     "url": "http://github.com/McLeopold/JavascriptHtmlr.git"
   },
   "directories": { "lib": "./lib" },
-  "main": "./lib/htmlr.js",
+  "main": "./lib/main.js",
+  "bin": {"htmlr": "./bin/htmlr-cli.js"},
+  "dependencies": {
+    "commander": ">= 0.5.1"
+  },
   "licenses": [
     {
       "type": "BSD",

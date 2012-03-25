@@ -35,7 +35,7 @@ with (Htmlr) {
       body(
         h1("Hello World!"),
         comment("woot!"),
-        div({id: 'content'}, '{0}')
+        div({id: 'content'}, '{content}')
       )
     )
   );

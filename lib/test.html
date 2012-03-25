@@ -132,6 +132,31 @@
 	    spot.appendChild(data_form.renderDOM(data3));
     };
     
+    var test4 = function () {
+      with (Htmlr) {
+        var template = doctype(
+          html(
+            head({lang: 'en'},
+              meta({charset: 'utf-8'}),
+              title('{title}'),
+              css('style.css'),
+              javascript('script.js')
+            ),
+            body(
+              h1("Hello World!"),
+              comment("woot!"),
+              div({id: 'content'}, '{content}')
+            )
+          )
+        );
+      }
+      var data = {title: "My Title", content: "My Content"};
+      var pre = document.createElement('pre');
+      pre.appendChild(document.createTextNode(template.render(data)));
+      spot.appendChild(pre);    
+    };
+    test4();
+    
     </script>
   </body>
 </html>
