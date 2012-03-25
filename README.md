@@ -1,10 +1,14 @@
 htmlr
 =====
 
-Htmlr is a Domain Specific Language (DSL) in javascript for generating HTML.
-It can be used on the server or in the browser.  In the browser it can generate
-HTML text for use with .innerHTML or it can generate document fragements for use
-with .appendChild.
+*   Htmlr is a template language for Express.
+*   Htmlr is an easy way to create DOM elements in the browser.
+*   Htmlr is a Domain Specific Language (DSL) in javascript for generating HTML.
+
+Htmlr can be used on the server or in the browser.  In the browser it can
+generate HTML text for use with `.innerHTML` or it can generate document
+fragments for use with `.appendChild`.  Template files use a .htmlr extension
+and can be a javascript expression or a function that returns an Htmlr object.
 
 Installation
 ------------
@@ -13,41 +17,114 @@ Installation
 npm install htmlr
 ```
 
+Browser Usage
+-------------
+
 For use in the browser, include the following script tag:
 
 ```html
-<script src="htmlr.js"></script>
+<script src="lib/htmlr.js"></script>
 ```
 
-Usage
------
+Then create your dynamic elements in the browser:
 
 ```javascript
 with (Htmlr) {
-  var template = doctype(
-    html(
-      head({lang: 'en'},
-        meta({charset: 'utf-8'}),
-        title('{title}'),
-        css('style.css'),
-        javascript('script.js')
-      ),
-      body(
-        h1("Hello World!"),
-        comment("woot!"),
-        div({id: 'content'}, '{content}')
-      )
-    )
+  var template = div({class: 'person'},
+    'Name: ', span('{name}'), br,
+    'Email: ', span('{email}')
   );
 }
 
-var data = {title: "My Title", content: "My Content"};
+var data = {name: 'Scott', email: 'scott@example.com'};
 
-// create server side string or for browser .innerHTML
-var html = template.render(data);
+// html text generation
+document.getElementById('my_div').innerHTML = template.render(data);
 
-// create browser side DOM
-var dom = template.renderDOM(data);
+// DOM object generation
+document.getElementById('my_div').appendChild( template.renderDOM(data) );
+```
+
+```html
+<div class="person">
+Name: <span>Scott</span><br />
+Email: <span>scott@example.com</span>
+</div>
+```
+
+Express Usage
+-------------
+
+Create the following 2 template files to mimic the default express jade
+templates and put them in the views directory:
+
+*   layout.htmlr
+
+    ```javascript
+    doctype()
+    .html(
+      head(
+        title('{title}'),
+        css('/stylesheets/style.css')
+      ),
+      body('{body}')
+    )
+    ```
+
+*   index.htmlr
+
+    ```javascript
+    h1('{title}')
+    .p('Welcome to {title}')
+    ```
+
+Then modify the `app.js` file to change the default rendering engine to htmlr:
+
+```javascript
+// Configuration
+
+app.configure(function(){
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'htmlr');         // <=== put 'htmlr' right here
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(app.router);
+  app.use(express.static(__dirname + '/public'));
+});
+```
+
+Command Line Usage
+------------------
+
+Htmlr can also be used on the command line to test templates without an express
+application running.  Create a filed called `template.htmlr` and a file with
+json data called `data.json`:
+
+```javascript
+doctype()
+.html(
+  head({lang: 'en'},
+    meta({charset: 'utf-8'}),
+    title('{title}'),
+    css('style.css'),
+    javascript('script.js')
+  ),
+  body(
+    h1("Hello World!"),
+    comment("woot!"),
+    div({id: 'content'}, '{content}')
+  )
+)
+```
+
+```json
+{"title": "My Title", "content": "My Content"}
+```
+
+Then run the following command:
+
+```bash
+htmlr template -d data.json -l
 ```
 
 ```html
