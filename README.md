@@ -7,7 +7,7 @@ htmlr
 
 Htmlr can be used on the server or in the browser.  In the browser it can
 generate HTML text for use with `.innerHTML` or it can generate document
-fragments for use with `.appendChild`.  Template files use a .htmlr extension
+fragments for use with `.appendChild`.  Template files use a `.htmlr` extension
 and can be a javascript expression or a function that returns an Htmlr object.
 
 Installation
@@ -58,7 +58,7 @@ Express Usage
 Create the following 2 template files to mimic the default express jade
 templates and put them in the views directory:
 
-*   layout.htmlr
+*   `layout.htmlr`
 
     ```javascript
     doctype()
@@ -71,7 +71,7 @@ templates and put them in the views directory:
     )
     ```
 
-*   index.htmlr
+*   `index.htmlr`
 
     ```javascript
     h1('{title}')
@@ -100,26 +100,30 @@ Htmlr can also be used on the command line to test templates without an express
 application running.  Create a filed called `template.htmlr` and a file with
 json data called `data.json`:
 
-```javascript
-doctype()
-.html(
-  head({lang: 'en'},
-    meta({charset: 'utf-8'}),
-    title('{title}'),
-    css('style.css'),
-    javascript('script.js')
-  ),
-  body(
-    h1("Hello World!"),
-    comment("woot!"),
-    div({id: 'content'}, '{content}')
-  )
-)
-```
+*   `template.htmlr`
 
-```json
-{"title": "My Title", "content": "My Content"}
-```
+    ```javascript
+    doctype()
+    .html(
+      head({lang: 'en'},
+        meta({charset: 'utf-8'}),
+        title('{title}'),
+        css('style.css'),
+        javascript('script.js')
+      ),
+      body(
+        h1("Hello World!"),
+        comment("woot!"),
+        div({id: 'content'}, '{content}')
+      )
+    )
+    ```
+
+*   `data.json`
+
+    ```json
+    {"title": "My Title", "content": "My Content"}
+    ```
 
 Then run the following command:
 
@@ -146,10 +150,9 @@ htmlr template -d data.json -l
 </html>
 ```
 
-Features
---------
 
-1.  Use the `with` statement to prevent pollution of the global namespace
+*   Use the `with` statement to prevent pollution of the global namespace in the
+    browser.  ( `with` is forbidden in strict mode :( )
 
     ```javascript
     with (Htmlr) {
@@ -162,7 +165,10 @@ Features
     <div />
     ```
 
-2.  Use an object as the first parameter to set attributes
+Features
+--------
+
+1.  Use an object literal as the first parameter to set attributes
 
     ```javascript
     with (Htmlr) {
@@ -175,7 +181,7 @@ Features
     <div id="mydiv" class="awesome" />
     ```
 
-3.  Use any other data type for the first paramter and all data types afterward
+2.  Use any other data type for the first parameter and all data types afterward
     for child nodes
    
     ```javascript
@@ -187,6 +193,19 @@ Features
     
     ```html
     <div>Literal String<br>1337</div>
+    ```
+
+3.  Chain objects together to create siblings
+
+    ```javascript
+    with (Htmlr) {
+      var template = div().div();
+    }
+    var html = template.render();
+    ```
+    
+    ```html
+    <div /><div />
     ```
 
 4.  Create templates that can be reused.  Pass data structures to templates to
