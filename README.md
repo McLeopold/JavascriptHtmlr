@@ -1,5 +1,6 @@
-htmlr
+htmlr [![TravisCI](https://secure.travis-ci.org/McLeopold/JavascriptHtmlr.png?branch=master)](http://travis-ci.org/McLeopold/JavascriptHtmlr)
 =====
+
 
 *   Htmlr is a template language for Express.
 *   Htmlr is an easy way to create DOM elements in the browser.
