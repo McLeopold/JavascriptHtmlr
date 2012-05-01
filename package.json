@@ -17,11 +17,12 @@
   "main": "./lib/main.js",
   "bin": {"htmlr": "./bin/htmlr-cli.js"},
   "dependencies": {
-    "commander": ">= 0.5.1",
-    "mocha": ">= 1.0.1"
+    "commander" : ">= 0.5.1",
+    "mocha"     : "latest",
+    "chai"      : "latest"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha -u tdd"
   },
   "licenses": [
     {
