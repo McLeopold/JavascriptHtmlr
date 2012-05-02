@@ -156,7 +156,7 @@ function main (program) {
     data = get_data();
 
     // loop through all given files outputing results
-    for (i = 0, ilen = program.args.length; i < len; ++i) {
+    for (i = 0, ilen = program.args.length; i < ilen; ++i) {
       try {
         template_file = get_template_file(program.args[i]);
       } catch (err) {
