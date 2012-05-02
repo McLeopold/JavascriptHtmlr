@@ -17,7 +17,7 @@
   "main": "./lib/main.js",
   "bin": {"htmlr": "./bin/htmlr-cli.js"},
   "dependencies": {
-    "commander" : "latest",
+    "commander" : ">= 0.5.1",
     "chai"      : "latest"
   },
   "scripts": {
