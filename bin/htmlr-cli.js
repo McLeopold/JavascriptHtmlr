@@ -78,20 +78,25 @@ function render_template(template_file, data, callback) {
     if (err) {
       console.error('Error: file "' + template_file + '" can not be opened');
     } else {
-      html = htmlr.compile(str, data)();
-      // check to see if results should be given to a layout file
-      if (!program.layout) {
-        program.layout = 'layout.htmlr';
+      try {
+        html = htmlr.compile(str, data)();
+        // check to see if results should be given to a layout file
+        if (!program.layout) {
+          program.layout = 'layout.htmlr';
+        }
+        if (typeof program.layout === 'string' && program.layout !== template_file) {
+          fs.readFile(program.layout, function (err, str) {
+            if (!err) {
+              data.body = html; // 'body' is the express property used for layouts
+              html = htmlr.compile(str, data)();
+            }
+          });
+        }
+        callback(html);
+      } catch (err) {
+        console.error('Error: failed to render "' + template_file + '" -- '
+          + err.name + ': ' + err.message);
       }
-      if (typeof program.layout === 'string' && program.layout !== template_file) {
-        fs.readFile(program.layout, function (err, str) {
-          if (!err) {
-            data.body = html; // 'body' is the express property used for layouts
-            html = htmlr.compile(str, data)();
-          }
-        });
-      }
-      callback(html);
     }
   });
 }
