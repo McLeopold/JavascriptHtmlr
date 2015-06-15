@@ -1,32 +1,25 @@
 {
   "name": "htmlr",
+  "version": "0.1.6",
   "description": "DSL for html generation in the browser or templates on the server",
-  "version": "0.1.5",
-  "author": "McLeopold",
-  "maintainers": [
-    {
-      "name": "McLeopold",
-      "email": "mcleopold@gmail.com"
-    }
-  ],
+  "keywords": ["template", "express", "DSL", "DOM"],
+  "bugs": "https://github.com/McLeopold/JavascriptHtmlr/issues",
+  "license": "BSD-2-Clause",
+  "author": "McLeopold <mcleopold@gmail.com>",
+  "main": "./lib/main.js",
+  "bin": {"htmlr": "./bin/htmlr-cli.js"},
+  "directories": { "lib": "./lib", "bin": "./bin", "example", "./examples" },
   "repository": {
     "type": "git",
     "url": "http://github.com/McLeopold/JavascriptHtmlr.git"
   },
-  "directories": { "lib": "./lib" },
-  "main": "./lib/main.js",
-  "bin": {"htmlr": "./bin/htmlr-cli.js"},
-  "dependencies": {
-    "commander" : ">= 0.5.1",
-    "chai"      : "latest"
-  },
   "scripts": {
     "test": "mocha --ui tdd"
   },
-  "licenses": [
-    {
-      "type": "BSD",
-      "url": "http://github.com/McLeopold/JavascriptHtmlr/blob/master/LICENSE"
-    }
-  ]
+  "dependencies": {
+    "commander" : ">= 0.5.1"
+  },
+  "devDependencies": {
+    "chai"      : "latest"
+  },
 }

@@ -32,18 +32,21 @@ var rate_limit_fn = function (fn, rate) {
 
 // get optional data from command line as json
 // or file containing json or javascript
-function get_data () {
+function get_data (callback) {
   var data;
   try {
     data = program.data ? JSON.parse(program.data) : {};
+    callback(data);
   } catch (err) {
     fs.readFile(program.data, function (err, str) {
       str = '' + str;
       if (!err) {
         try {
           data = JSON.parse(str);
+          callback(data);
         } catch (err) {
           data = eval(str);
+          callback(data);
         }
       }
     });
@@ -79,7 +82,7 @@ function render_template(template_file, data, callback) {
       console.error('Error: file "' + template_file + '" can not be opened');
     } else {
       try {
-        html = htmlr.compile(str, data)();
+        html = htmlr.compile(str, data);
         // check to see if results should be given to a layout file
         if (!program.layout) {
           program.layout = 'layout.htmlr';
@@ -88,7 +91,7 @@ function render_template(template_file, data, callback) {
           fs.readFile(program.layout, function (err, str) {
             if (!err) {
               data.body = html; // 'body' is the express property used for layouts
-              html = htmlr.compile(str, data)();
+              html = htmlr.compile(str, data);
             }
           });
         }
@@ -158,28 +161,28 @@ function main (program) {
     }
 
     // get data
-    data = get_data();
-
-    // loop through all given files outputing results
-    for (i = 0, ilen = program.args.length; i < ilen; ++i) {
-      try {
-        template_file = get_template_file(program.args[i]);
-      } catch (err) {
-        console.log(err);
-        continue;
+    get_data(function (data) {
+      // loop through all given files outputing results
+      for (i = 0, ilen = program.args.length; i < ilen; ++i) {
+        try {
+          template_file = get_template_file(program.args[i]);
+        } catch (err) {
+          console.log(err);
+          continue;
+        }
+        // only allow file change events once per second
+        var do_output = (function (the_template_file) {
+          return function (event, filename) {
+            template_output(the_template_file, data, program.output);
+          };
+        }(template_file));
+        // generate output and maybe set watch event
+        if (program.watch) {
+          fs.watch(template_file, rate_limit_fn(do_output, 1000));
+        }
+        do_output();
       }
-      // only allow file change events once per second
-      var do_output = (function (the_template_file) {
-        return rate_limit_fn(function (event, filename) {
-          template_output(the_template_file, data, program.output);
-        }, 1000);
-      }(template_file));
-      // generate output and maybe set watch event
-      if (program.watch) {
-        fs.watch(template_file, do_output);
-      }
-      do_output();
-    }
+    })
   }
 }
 

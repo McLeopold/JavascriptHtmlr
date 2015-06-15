@@ -18,6 +18,12 @@ Installation
 npm install htmlr
 ```
 
+For command line usage, install globaly:
+
+```bash
+npm install htmlr -g
+```
+
 Browser Usage
 -------------
 
@@ -68,15 +74,33 @@ templates and put them in the views directory:
         title('{title}'),
         css('/stylesheets/style.css')
       ),
-      body('{body}')
+      body('{content}')
     )
     ```
 
 *   `index.htmlr`
 
     ```javascript
-    h1('{title}')
-    .p('Welcome to {title}')
+    extend('layout', {
+
+    content:
+      h1('{title}')
+      .p('Welcome to {title}')
+        
+    })
+    ```
+
+*   `error.htmlr`
+
+    ```javascript
+    extend('layout', {
+
+    content:
+      h1('{message}')
+      .h2('{error.status}')
+      .pre('{error.stack}')
+        
+    })
     ```
 
 Then modify the `app.js` file to change the default rendering engine to htmlr:
@@ -193,7 +217,7 @@ Features
     ```
     
     ```html
-    <div>Literal String<br>1337</div>
+    <div>Literal String<br />1337</div>
     ```
 
 3.  Chain objects together to create siblings

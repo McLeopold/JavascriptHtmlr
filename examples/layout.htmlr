@@ -4,5 +4,5 @@ doctype()
     title('{title}'),
     css('/stylesheets/style.css')
   ),
-  body('{body}')
+  body('{content}')
 )
