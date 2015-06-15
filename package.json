@@ -8,7 +8,7 @@
   "author": "McLeopold <mcleopold@gmail.com>",
   "main": "./lib/main.js",
   "bin": {"htmlr": "./bin/htmlr-cli.js"},
-  "directories": { "lib": "./lib", "bin": "./bin", "example", "./examples" },
+  "directories": { "lib": "./lib", "bin": "./bin", "example": "./examples" },
   "repository": {
     "type": "git",
     "url": "http://github.com/McLeopold/JavascriptHtmlr.git"
