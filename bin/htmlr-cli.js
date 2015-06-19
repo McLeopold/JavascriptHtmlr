@@ -163,7 +163,7 @@ function main (program) {
     // get data
     get_data(function (data) {
       // loop through all given files outputing results
-      for (i = 0, ilen = program.args.length; i < ilen; ++i) {
+      for (var i = 0, ilen = program.args.length; i < ilen; ++i) {
         try {
           template_file = get_template_file(program.args[i]);
         } catch (err) {

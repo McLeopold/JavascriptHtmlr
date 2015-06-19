@@ -1,6 +1,6 @@
 {
   "name": "htmlr",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "description": "DSL for html generation in the browser or templates on the server",
   "keywords": ["template", "express", "DSL", "DOM"],
   "bugs": "https://github.com/McLeopold/JavascriptHtmlr/issues",
@@ -17,7 +17,7 @@
     "test": "mocha --ui tdd"
   },
   "dependencies": {
-    "commander" : ">= 0.5.1"
+    "commander" : "latest"
   },
   "devDependencies": {
     "chai"      : "latest"
