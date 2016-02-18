@@ -3,107 +3,86 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
-    </script>
     <title>Javascript Htmlr by McLeopold</title>
   </head>
 
   <body>
-    <a id="forkme_banner" href="https://github.com/McLeopold/JavascriptHtmlr">Fork Me on GitHub</a>
-    <div class="shell">
+    <header>
+      <div class="inner">
+        <h1>Javascript Htmlr</h1>
+        <h2>Javascript DSL for html generation in the browser or on the server</h2>
+        <a href="https://github.com/McLeopold/JavascriptHtmlr" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
 
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Javascript Htmlr</h1>
-            <h2>Javascript DSL for html generation in the browser or on the server</h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
-
-      <section id="downloads">
-        <span class="inner">
-          <a href="https://github.com/McLeopold/JavascriptHtmlr/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/McLeopold/JavascriptHtmlr/tarball/master" class="tgz"><em>download</em> .TGZ</a>
-        </span>
-      </section>
-
-      <span class="banner-fix"></span>
-
-      <section id="main_content">
-        <h1>htmlr</h1>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="htmlr-" class="anchor" href="#htmlr-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>htmlr <a href="http://travis-ci.org/McLeopold/JavascriptHtmlr"><img src="https://secure.travis-ci.org/McLeopold/JavascriptHtmlr.png?branch=master" alt="TravisCI"></a>
+</h1>
 
 <ul>
 <li>  Htmlr is a template language for Express.</li>
 <li>  Htmlr is an easy way to create DOM elements in the browser.</li>
 <li>  Htmlr is a Domain Specific Language (DSL) in javascript for generating HTML.</li>
-</ul><p>Htmlr can be used on the server or in the browser.  In the browser it can
+</ul>
+
+<p>Htmlr can be used on the server or in the browser.  In the browser it can
 generate HTML text for use with <code>.innerHTML</code> or it can generate document
 fragments for use with <code>.appendChild</code>.  Template files use a <code>.htmlr</code> extension
 and can be a javascript expression or a function that returns an Htmlr object.</p>
 
-<h2>Installation</h2>
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
 
-<div class="highlight">
-<pre>npm install htmlr
-</pre>
-</div>
+<div class="highlight highlight-source-shell"><pre>npm install htmlr</pre></div>
 
+<p>For command line usage, install globaly:</p>
 
-<h2>Browser Usage</h2>
+<div class="highlight highlight-source-shell"><pre>npm install htmlr -g</pre></div>
+
+<h2>
+<a id="browser-usage" class="anchor" href="#browser-usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Browser Usage</h2>
 
 <p>For use in the browser, include the following script tag:</p>
 
-<div class="highlight">
-<pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"lib/htmlr.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-</pre>
-</div>
-
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>lib/htmlr.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
 
 <p>Then create your dynamic elements in the browser:</p>
 
-<div class="highlight">
-<pre><span class="kd">with</span> <span class="p">(</span><span class="nx">Htmlr</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">template</span> <span class="o">=</span> <span class="nx">div</span><span class="p">({</span><span class="kr">class</span><span class="o">:</span> <span class="s1">'person'</span><span class="p">},</span>
-    <span class="s1">'Name: '</span><span class="p">,</span> <span class="nx">span</span><span class="p">(</span><span class="s1">'{name}'</span><span class="p">),</span> <span class="nx">br</span><span class="p">,</span>
-    <span class="s1">'Email: '</span><span class="p">,</span> <span class="nx">span</span><span class="p">(</span><span class="s1">'{email}'</span><span class="p">)</span>
-  <span class="p">);</span>
-<span class="p">}</span>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">with</span> (Htmlr) {
+  <span class="pl-k">var</span> template <span class="pl-k">=</span> <span class="pl-en">div</span>({class<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>person<span class="pl-pds">'</span></span>},
+    <span class="pl-s"><span class="pl-pds">'</span>Name: <span class="pl-pds">'</span></span>, <span class="pl-en">span</span>(<span class="pl-s"><span class="pl-pds">'</span>{name}<span class="pl-pds">'</span></span>), br,
+    <span class="pl-s"><span class="pl-pds">'</span>Email: <span class="pl-pds">'</span></span>, <span class="pl-en">span</span>(<span class="pl-s"><span class="pl-pds">'</span>{email}<span class="pl-pds">'</span></span>)
+  );
+}
 
-<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">'Scott'</span><span class="p">,</span> <span class="nx">email</span><span class="o">:</span> <span class="s1">'scott@example.com'</span><span class="p">};</span>
+<span class="pl-k">var</span> data <span class="pl-k">=</span> {name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Scott<span class="pl-pds">'</span></span>, email<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>scott@example.com<span class="pl-pds">'</span></span>};
 
-<span class="c1">// html text generation</span>
-<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'my_div'</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">template</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="pl-c">// html text generation</span>
+<span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>my_div<span class="pl-pds">'</span></span>).<span class="pl-smi">innerHTML</span> <span class="pl-k">=</span> <span class="pl-smi">template</span>.<span class="pl-en">render</span>(data);
 
-<span class="c1">// DOM object generation</span>
-<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'my_div'</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">template</span><span class="p">.</span><span class="nx">renderDOM</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">);</span>
-</pre>
-</div>
+<span class="pl-c">// DOM object generation</span>
+<span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>my_div<span class="pl-pds">'</span></span>).<span class="pl-c1">appendChild</span>( <span class="pl-smi">template</span>.<span class="pl-en">renderDOM</span>(data) );</pre></div>
 
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>person<span class="pl-pds">"</span></span>&gt;
+Name: &lt;<span class="pl-ent">span</span>&gt;Scott&lt;/<span class="pl-ent">span</span>&gt;&lt;<span class="pl-ent">br</span> /&gt;
+Email: &lt;<span class="pl-ent">span</span>&gt;scott@example.com&lt;/<span class="pl-ent">span</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
 
-<div class="highlight">
-<pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"person"</span><span class="nt">&gt;</span>
-Name: <span class="nt">&lt;span&gt;</span>Scott<span class="nt">&lt;/span&gt;&lt;br</span> <span class="nt">/&gt;</span>
-Email: <span class="nt">&lt;span&gt;</span>scott@example.com<span class="nt">&lt;/span&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</pre>
-</div>
-
-
-<h2>Express Usage</h2>
+<h2>
+<a id="express-usage" class="anchor" href="#express-usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Express Usage</h2>
 
 <p>Create the following 2 template files to mimic the default express jade
 templates and put them in the views directory:</p>
@@ -112,45 +91,55 @@ templates and put them in the views directory:</p>
 <li>
 <p><code>layout.htmlr</code></p>
 
-<div class="highlight">
-<pre><span class="nx">doctype</span><span class="p">()</span>
-<span class="p">.</span><span class="nx">html</span><span class="p">(</span>
-  <span class="nx">head</span><span class="p">(</span>
-    <span class="nx">title</span><span class="p">(</span><span class="s1">'{title}'</span><span class="p">),</span>
-    <span class="nx">css</span><span class="p">(</span><span class="s1">'/stylesheets/style.css'</span><span class="p">)</span>
-  <span class="p">),</span>
-  <span class="nx">body</span><span class="p">(</span><span class="s1">'{body}'</span><span class="p">)</span>
-<span class="p">)</span>
-</pre>
-</div>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">doctype</span>()
+.<span class="pl-en">html</span>(
+  <span class="pl-en">head</span>(
+    <span class="pl-en">title</span>(<span class="pl-s"><span class="pl-pds">'</span>{title}<span class="pl-pds">'</span></span>),
+    <span class="pl-en">css</span>(<span class="pl-s"><span class="pl-pds">'</span>/stylesheets/style.css<span class="pl-pds">'</span></span>)
+  ),
+  <span class="pl-en">body</span>(<span class="pl-s"><span class="pl-pds">'</span>{content}<span class="pl-pds">'</span></span>)
+)</pre></div>
 </li>
 <li>
 <p><code>index.htmlr</code></p>
 
-<div class="highlight">
-<pre><span class="nx">h1</span><span class="p">(</span><span class="s1">'{title}'</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">p</span><span class="p">(</span><span class="s1">'Welcome to {title}'</span><span class="p">)</span>
-</pre>
-</div>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">extend</span>(<span class="pl-s"><span class="pl-pds">'</span>layout<span class="pl-pds">'</span></span>, {
+
+content<span class="pl-k">:</span>
+  <span class="pl-en">h1</span>(<span class="pl-s"><span class="pl-pds">'</span>{title}<span class="pl-pds">'</span></span>)
+  .<span class="pl-en">p</span>(<span class="pl-s"><span class="pl-pds">'</span>Welcome to {title}<span class="pl-pds">'</span></span>)
+
+})</pre></div>
 </li>
-</ul><p>Then modify the <code>app.js</code> file to change the default rendering engine to htmlr:</p>
+<li>
+<p><code>error.htmlr</code></p>
 
-<div class="highlight">
-<pre><span class="c1">// Configuration</span>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">extend</span>(<span class="pl-s"><span class="pl-pds">'</span>layout<span class="pl-pds">'</span></span>, {
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">configure</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-  <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'views'</span><span class="p">,</span> <span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/views'</span><span class="p">);</span>
-  <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'view engine'</span><span class="p">,</span> <span class="s1">'htmlr'</span><span class="p">);</span>         <span class="c1">// &lt;=== put 'htmlr' right here</span>
-  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">bodyParser</span><span class="p">());</span>
-  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">methodOverride</span><span class="p">());</span>
-  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">router</span><span class="p">);</span>
-  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/public'</span><span class="p">));</span>
-<span class="p">});</span>
-</pre>
-</div>
+content<span class="pl-k">:</span>
+  <span class="pl-en">h1</span>(<span class="pl-s"><span class="pl-pds">'</span>{message}<span class="pl-pds">'</span></span>)
+  .<span class="pl-en">h2</span>(<span class="pl-s"><span class="pl-pds">'</span>{error.status}<span class="pl-pds">'</span></span>)
+  .<span class="pl-en">pre</span>(<span class="pl-s"><span class="pl-pds">'</span>{error.stack}<span class="pl-pds">'</span></span>)
 
+})</pre></div>
+</li>
+</ul>
 
-<h2>Command Line Usage</h2>
+<p>Then modify the <code>app.js</code> file to change the default rendering engine to htmlr:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// Configuration</span>
+
+<span class="pl-smi">app</span>.<span class="pl-en">configure</span>(<span class="pl-k">function</span>(){
+  <span class="pl-smi">app</span>.<span class="pl-en">set</span>(<span class="pl-s"><span class="pl-pds">'</span>views<span class="pl-pds">'</span></span>, <span class="pl-c1">__dirname</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>/views<span class="pl-pds">'</span></span>);
+  <span class="pl-smi">app</span>.<span class="pl-en">set</span>(<span class="pl-s"><span class="pl-pds">'</span>view engine<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>htmlr<span class="pl-pds">'</span></span>);         <span class="pl-c">// &lt;=== put 'htmlr' right here</span>
+  <span class="pl-smi">app</span>.<span class="pl-en">use</span>(<span class="pl-smi">express</span>.<span class="pl-en">bodyParser</span>());
+  <span class="pl-smi">app</span>.<span class="pl-en">use</span>(<span class="pl-smi">express</span>.<span class="pl-en">methodOverride</span>());
+  <span class="pl-smi">app</span>.<span class="pl-en">use</span>(<span class="pl-smi">app</span>.<span class="pl-smi">router</span>);
+  <span class="pl-smi">app</span>.<span class="pl-en">use</span>(<span class="pl-smi">express</span>.<span class="pl-en">static</span>(<span class="pl-c1">__dirname</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>/public<span class="pl-pds">'</span></span>));
+});</pre></div>
+
+<h2>
+<a id="command-line-usage" class="anchor" href="#command-line-usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Command Line Usage</h2>
 
 <p>Htmlr can also be used on the command line to test templates without an express
 application running.  Create a filed called <code>template.htmlr</code> and a file with
@@ -160,329 +149,240 @@ json data called <code>data.json</code>:</p>
 <li>
 <p><code>template.htmlr</code></p>
 
-<div class="highlight">
-<pre><span class="nx">doctype</span><span class="p">()</span>
-<span class="p">.</span><span class="nx">html</span><span class="p">(</span>
-  <span class="nx">head</span><span class="p">({</span><span class="nx">lang</span><span class="o">:</span> <span class="s1">'en'</span><span class="p">},</span>
-    <span class="nx">meta</span><span class="p">({</span><span class="nx">charset</span><span class="o">:</span> <span class="s1">'utf-8'</span><span class="p">}),</span>
-    <span class="nx">title</span><span class="p">(</span><span class="s1">'{title}'</span><span class="p">),</span>
-    <span class="nx">css</span><span class="p">(</span><span class="s1">'style.css'</span><span class="p">),</span>
-    <span class="nx">javascript</span><span class="p">(</span><span class="s1">'script.js'</span><span class="p">)</span>
-  <span class="p">),</span>
-  <span class="nx">body</span><span class="p">(</span>
-    <span class="nx">h1</span><span class="p">(</span><span class="s2">"Hello World!"</span><span class="p">),</span>
-    <span class="nx">comment</span><span class="p">(</span><span class="s2">"woot!"</span><span class="p">),</span>
-    <span class="nx">div</span><span class="p">({</span><span class="nx">id</span><span class="o">:</span> <span class="s1">'content'</span><span class="p">},</span> <span class="s1">'{content}'</span><span class="p">)</span>
-  <span class="p">)</span>
-<span class="p">)</span>
-</pre>
-</div>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">doctype</span>()
+.<span class="pl-en">html</span>(
+  <span class="pl-en">head</span>({lang<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>en<span class="pl-pds">'</span></span>},
+    <span class="pl-en">meta</span>({charset<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>utf-8<span class="pl-pds">'</span></span>}),
+    <span class="pl-en">title</span>(<span class="pl-s"><span class="pl-pds">'</span>{title}<span class="pl-pds">'</span></span>),
+    <span class="pl-en">css</span>(<span class="pl-s"><span class="pl-pds">'</span>style.css<span class="pl-pds">'</span></span>),
+    <span class="pl-en">javascript</span>(<span class="pl-s"><span class="pl-pds">'</span>script.js<span class="pl-pds">'</span></span>)
+  ),
+  <span class="pl-en">body</span>(
+    <span class="pl-en">h1</span>(<span class="pl-s"><span class="pl-pds">"</span>Hello World!<span class="pl-pds">"</span></span>),
+    <span class="pl-en">comment</span>(<span class="pl-s"><span class="pl-pds">"</span>woot!<span class="pl-pds">"</span></span>),
+    <span class="pl-en">div</span>({id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>content<span class="pl-pds">'</span></span>}, <span class="pl-s"><span class="pl-pds">'</span>{content}<span class="pl-pds">'</span></span>)
+  )
+)</pre></div>
 </li>
 <li>
 <p><code>data.json</code></p>
 
-<div class="highlight">
-<pre><span class="p">{</span><span class="nt">"title"</span><span class="p">:</span> <span class="s2">"My Title"</span><span class="p">,</span> <span class="nt">"content"</span><span class="p">:</span> <span class="s2">"My Content"</span><span class="p">}</span>
-</pre>
-</div>
+<div class="highlight highlight-source-json"><pre>{<span class="pl-s"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>My Title<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>content<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>My Content<span class="pl-pds">"</span></span>}</pre></div>
 </li>
-</ul><p>Then run the following command:</p>
+</ul>
 
-<div class="highlight">
-<pre>htmlr template -d data.json -l
-</pre>
-</div>
+<p>Then run the following command:</p>
 
+<div class="highlight highlight-source-shell"><pre>htmlr template -d data.json -l</pre></div>
 
-<div class="highlight">
-<pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-  <span class="nt">&lt;head</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;title&gt;</span>My Title<span class="nt">&lt;/title&gt;</span>
-    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"style.css"</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"script.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-  <span class="nt">&lt;/head&gt;</span>
-  <span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;h1&gt;</span>Hello World!<span class="nt">&lt;/h1&gt;</span>
-    <span class="c">&lt;!--woot!--&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"content"</span><span class="nt">&gt;</span>
+<div class="highlight highlight-text-html-basic"><pre>&lt;!DOCTYPE html&gt;
+&lt;<span class="pl-ent">html</span>&gt;
+  &lt;<span class="pl-ent">head</span> <span class="pl-e">lang</span>=<span class="pl-s"><span class="pl-pds">"</span>en<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">meta</span> <span class="pl-e">charset</span>=<span class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span> /&gt;
+    &lt;<span class="pl-ent">title</span>&gt;My Title&lt;/<span class="pl-ent">title</span>&gt;
+    &lt;<span class="pl-ent">link</span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">"</span>stylesheet<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>style.css<span class="pl-pds">"</span></span> /&gt;
+<span class="pl-s1">    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>script.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
+  &lt;/<span class="pl-ent">head</span>&gt;
+  &lt;<span class="pl-ent">body</span>&gt;
+    &lt;<span class="pl-ent">h1</span>&gt;Hello World!&lt;/<span class="pl-ent">h1</span>&gt;
+    <span class="pl-c">&lt;!--woot!--&gt;</span>
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>content<span class="pl-pds">"</span></span>&gt;
       My Content
-    <span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</pre>
-</div>
-
+    &lt;/<span class="pl-ent">div</span>&gt;
+  &lt;/<span class="pl-ent">body</span>&gt;
+&lt;/<span class="pl-ent">html</span>&gt;</pre></div>
 
 <ul>
 <li>
 <p>Use the <code>with</code> statement to prevent pollution of the global namespace in the
 browser.  ( <code>with</code> is forbidden in strict mode :( )</p>
 
-<div class="highlight">
-<pre><span class="kd">with</span> <span class="p">(</span><span class="nx">Htmlr</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">template</span> <span class="o">=</span> <span class="nx">div</span><span class="p">();</span>
-<span class="p">}</span>    
-<span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="nx">template</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
-</pre>
-</div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">with</span> (Htmlr) {
+  <span class="pl-k">var</span> template <span class="pl-k">=</span> <span class="pl-en">div</span>();
+}    
+<span class="pl-k">var</span> html <span class="pl-k">=</span> <span class="pl-smi">template</span>.<span class="pl-en">render</span>();</pre></div>
 
-
-<div class="highlight">
-<pre><span class="nt">&lt;div</span> <span class="nt">/&gt;</span>
-</pre>
-</div>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span> /&gt;</pre></div>
 </li>
-</ul><h2>Features</h2>
+</ul>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
 
 <ol>
 <li>
 <p>Use an object literal as the first parameter to set attributes</p>
 
-<div class="highlight">
-<pre><span class="kd">with</span> <span class="p">(</span><span class="nx">Htmlr</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">template</span> <span class="o">=</span> <span class="nx">div</span><span class="p">({</span><span class="nx">id</span><span class="o">:</span> <span class="s1">'mydiv'</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">'awesome'</span><span class="p">});</span>
-<span class="p">}</span>    
-<span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="nx">template</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
-</pre>
-</div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">with</span> (Htmlr) {
+  <span class="pl-k">var</span> template <span class="pl-k">=</span> <span class="pl-en">div</span>({id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>mydiv<span class="pl-pds">'</span></span>, class<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>awesome<span class="pl-pds">'</span></span>});
+}    
+<span class="pl-k">var</span> html <span class="pl-k">=</span> <span class="pl-smi">template</span>.<span class="pl-en">render</span>();</pre></div>
 
-
-<div class="highlight">
-<pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"mydiv"</span> <span class="na">class=</span><span class="s">"awesome"</span> <span class="nt">/&gt;</span>
-</pre>
-</div>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>mydiv<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>awesome<span class="pl-pds">"</span></span> /&gt;</pre></div>
 </li>
 <li>
 <p>Use any other data type for the first parameter and all data types afterward
 for child nodes</p>
 
-<div class="highlight">
-<pre><span class="kd">with</span> <span class="p">(</span><span class="nx">Htmlr</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">template</span> <span class="o">=</span> <span class="nx">div</span><span class="p">(</span><span class="s1">'Literal String'</span><span class="p">,</span> <span class="nx">br</span><span class="p">,</span> <span class="mi">1337</span><span class="p">);</span>
-<span class="p">}</span>   
-<span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="nx">template</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
-</pre>
-</div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">with</span> (Htmlr) {
+  <span class="pl-k">var</span> template <span class="pl-k">=</span> <span class="pl-en">div</span>(<span class="pl-s"><span class="pl-pds">'</span>Literal String<span class="pl-pds">'</span></span>, br, <span class="pl-c1">1337</span>);
+}   
+<span class="pl-k">var</span> html <span class="pl-k">=</span> <span class="pl-smi">template</span>.<span class="pl-en">render</span>();</pre></div>
 
-
-<div class="highlight">
-<pre><span class="nt">&lt;div&gt;</span>Literal String<span class="nt">&lt;br&gt;</span>1337<span class="nt">&lt;/div&gt;</span>
-</pre>
-</div>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span>&gt;Literal String&lt;<span class="pl-ent">br</span> /&gt;1337&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
 </li>
 <li>
 <p>Chain objects together to create siblings</p>
 
-<div class="highlight">
-<pre><span class="kd">with</span> <span class="p">(</span><span class="nx">Htmlr</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">template</span> <span class="o">=</span> <span class="nx">div</span><span class="p">().</span><span class="nx">div</span><span class="p">();</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="nx">template</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
-</pre>
-</div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">with</span> (Htmlr) {
+  <span class="pl-k">var</span> template <span class="pl-k">=</span> <span class="pl-en">div</span>().<span class="pl-en">div</span>();
+}
+<span class="pl-k">var</span> html <span class="pl-k">=</span> <span class="pl-smi">template</span>.<span class="pl-en">render</span>();</pre></div>
 
-
-<div class="highlight">
-<pre><span class="nt">&lt;div</span> <span class="nt">/&gt;&lt;div</span> <span class="nt">/&gt;</span>
-</pre>
-</div>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span> /&gt;&lt;<span class="pl-ent">div</span> /&gt;</pre></div>
 </li>
 <li>
 <p>Create templates that can be reused.  Pass data structures to templates to
 ease variable generation</p>
 
-<div class="highlight">
-<pre><span class="kd">with</span> <span class="p">(</span><span class="nx">Htmlr</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">template</span> <span class="o">=</span> <span class="nx">div</span><span class="p">({</span><span class="nx">id</span><span class="o">:</span> <span class="s1">'{id}'</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">'{class}'</span><span class="p">},</span>
-    <span class="s1">'{content}'</span>
-  <span class="p">)</span>
-<span class="p">}</span>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">with</span> (Htmlr) {
+  <span class="pl-k">var</span> template <span class="pl-k">=</span> <span class="pl-en">div</span>({id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>{id}<span class="pl-pds">'</span></span>, class<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>{class}<span class="pl-pds">'</span></span>},
+    <span class="pl-s"><span class="pl-pds">'</span>{content}<span class="pl-pds">'</span></span>
+  )
+}
 
-<span class="kd">var</span> <span class="nx">data1</span> <span class="o">=</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="s1">'one'</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">'first second'</span><span class="p">,</span> <span class="nx">content</span><span class="o">:</span> <span class="s1">'Hello'</span><span class="p">};</span>
-<span class="kd">var</span> <span class="nx">data2</span> <span class="o">=</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="s1">'two'</span><span class="p">,</span> <span class="kr">class</span><span class="o">:</span> <span class="s1">'third'</span><span class="p">,</span> <span class="nx">content</span><span class="o">:</span> <span class="s1">'World!'</span><span class="p">};</span>
+<span class="pl-k">var</span> data1 <span class="pl-k">=</span> {id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>one<span class="pl-pds">'</span></span>, class<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>first second<span class="pl-pds">'</span></span>, content<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Hello<span class="pl-pds">'</span></span>};
+<span class="pl-k">var</span> data2 <span class="pl-k">=</span> {id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>two<span class="pl-pds">'</span></span>, class<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>third<span class="pl-pds">'</span></span>, content<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>World!<span class="pl-pds">'</span></span>};
 
-<span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="nx">template</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">data1</span><span class="p">)</span> <span class="o">+</span> <span class="nx">template</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">data2</span><span class="p">);</span>
-</pre>
-</div>
+<span class="pl-k">var</span> html <span class="pl-k">=</span> <span class="pl-smi">template</span>.<span class="pl-en">render</span>(data1) <span class="pl-k">+</span> <span class="pl-smi">template</span>.<span class="pl-en">render</span>(data2);</pre></div>
 
-
-<div class="highlight">
-<pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"one"</span> <span class="na">class=</span><span class="s">"first second"</span><span class="nt">&gt;</span>Hello<span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"two"</span> <span class="na">class=</span><span class="s">"third"</span><span class="nt">&gt;</span>World!<span class="nt">&lt;/div&gt;</span>
-</pre>
-</div>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>one<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>first second<span class="pl-pds">"</span></span>&gt;Hello&lt;/<span class="pl-ent">div</span>&gt;
+&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>two<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>third<span class="pl-pds">"</span></span>&gt;World!&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
 </li>
 <li>
 <p>Use substitution syntax for creating templates that can be fed data, either
 objects or arrays</p>
 
-<div class="highlight">
-<pre><span class="kd">with</span> <span class="p">(</span><span class="nx">Htmlr</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">template1</span> <span class="o">=</span> <span class="nx">div</span><span class="p">(</span><span class="s1">'{name}'</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">data1</span> <span class="o">=</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">'Scott'</span><span class="p">};</span>
-<span class="kd">var</span> <span class="nx">html1</span> <span class="o">=</span> <span class="nx">template1</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">data1</span><span class="p">);</span>
-</pre>
-</div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">with</span> (Htmlr) {
+  <span class="pl-k">var</span> template1 <span class="pl-k">=</span> <span class="pl-en">div</span>(<span class="pl-s"><span class="pl-pds">'</span>{name}<span class="pl-pds">'</span></span>);
+}
+<span class="pl-k">var</span> data1 <span class="pl-k">=</span> {name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Scott<span class="pl-pds">'</span></span>};
+<span class="pl-k">var</span> html1 <span class="pl-k">=</span> <span class="pl-smi">template1</span>.<span class="pl-en">render</span>(data1);</pre></div>
 
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span>&gt;Scott&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
 
-<div class="highlight">
-<pre><span class="nt">&lt;div&gt;</span>Scott<span class="nt">&lt;/div&gt;</span>
-</pre>
-</div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">with</span> (Htmlr) {
+  <span class="pl-k">var</span> template2 <span class="pl-k">=</span> <span class="pl-en">div</span>(<span class="pl-s"><span class="pl-pds">'</span>{0}<span class="pl-pds">'</span></span>);
+}
+<span class="pl-k">var</span> data2 <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">'</span>Scott<span class="pl-pds">'</span></span>];
+<span class="pl-k">var</span> html2 <span class="pl-k">=</span> <span class="pl-smi">template2</span>.<span class="pl-en">render</span>(data2);</pre></div>
 
-
-<div class="highlight">
-<pre><span class="kd">with</span> <span class="p">(</span><span class="nx">Htmlr</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">template2</span> <span class="o">=</span> <span class="nx">div</span><span class="p">(</span><span class="s1">'{0}'</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">data2</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Scott'</span><span class="p">];</span>
-<span class="kd">var</span> <span class="nx">html2</span> <span class="o">=</span> <span class="nx">template2</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">data2</span><span class="p">);</span>
-</pre>
-</div>
-
-
-<div class="highlight">
-<pre><span class="nt">&lt;div&gt;</span>Scott<span class="nt">&lt;/div&gt;</span>
-</pre>
-</div>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span>&gt;Scott&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
 </li>
 <li>
 <p>Loop through data structures, objects or arrays, using the <code>each</code> construct</p>
 
-<div class="highlight">
-<pre><span class="kd">with</span> <span class="p">(</span><span class="nx">Htmlr</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">template1</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="nx">ul</span><span class="p">(</span><span class="nx">each</span><span class="p">()(</span>
-      <span class="nx">li</span><span class="p">(</span><span class="s1">'{0}'</span><span class="p">)</span>
-    <span class="p">))</span>
-  <span class="p">);</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">data1</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'one'</span><span class="p">,</span> <span class="s1">'two'</span><span class="p">,</span> <span class="s1">'three'</span><span class="p">];</span>
-<span class="kd">var</span> <span class="nx">html1</span> <span class="o">=</span> <span class="nx">template1</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">data1</span><span class="p">);</span>
-</pre>
-</div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">with</span> (Htmlr) {
+  <span class="pl-k">var</span> template1 <span class="pl-k">=</span> (
+    <span class="pl-en">ul</span>(<span class="pl-en">each</span>()(
+      <span class="pl-en">li</span>(<span class="pl-s"><span class="pl-pds">'</span>{0}<span class="pl-pds">'</span></span>)
+    ))
+  );
+}
+<span class="pl-k">var</span> data1 <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">'</span>one<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>two<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>three<span class="pl-pds">'</span></span>];
+<span class="pl-k">var</span> html1 <span class="pl-k">=</span> <span class="pl-smi">template1</span>.<span class="pl-en">render</span>(data1);</pre></div>
 
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">ul</span>&gt;
+  &lt;<span class="pl-ent">li</span>&gt;one&lt;/<span class="pl-ent">li</span>&gt;
+  &lt;<span class="pl-ent">li</span>&gt;two&lt;/<span class="pl-ent">li</span>&gt;
+  &lt;<span class="pl-ent">li</span>&gt;three&lt;/<span class="pl-ent">li</span>&gt;
+&lt;/<span class="pl-ent">ul</span>&gt;</pre></div>
 
-<div class="highlight">
-<pre><span class="nt">&lt;ul&gt;</span>
-  <span class="nt">&lt;li&gt;</span>one<span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>two<span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>three<span class="nt">&lt;/li&gt;</span>
-<span class="nt">&lt;/ul&gt;</span>
-</pre>
-</div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">with</span> (Htmlr) {
+  <span class="pl-k">var</span> template2 <span class="pl-k">=</span> (
+    <span class="pl-en">ul</span>(<span class="pl-en">each</span>()(
+      <span class="pl-en">li</span>(<span class="pl-s"><span class="pl-pds">'</span>{key}: {value}<span class="pl-pds">'</span></span>)
+    ))
+  );
+}
+<span class="pl-k">var</span> data2 <span class="pl-k">=</span> {<span class="pl-c1">1</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>one<span class="pl-pds">'</span></span>, <span class="pl-c1">2</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>two<span class="pl-pds">'</span></span>, <span class="pl-c1">3</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>three<span class="pl-pds">'</span></span>};
+<span class="pl-k">var</span> html2 <span class="pl-k">=</span> <span class="pl-smi">template2</span>.<span class="pl-en">render</span>(data2);</pre></div>
 
-
-<div class="highlight">
-<pre><span class="kd">with</span> <span class="p">(</span><span class="nx">Htmlr</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">template2</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="nx">ul</span><span class="p">(</span><span class="nx">each</span><span class="p">()(</span>
-      <span class="nx">li</span><span class="p">(</span><span class="s1">'{key}: {value}'</span><span class="p">)</span>
-    <span class="p">))</span>
-  <span class="p">);</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">data2</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="o">:</span> <span class="s1">'one'</span><span class="p">,</span> <span class="mi">2</span><span class="o">:</span> <span class="s1">'two'</span><span class="p">,</span> <span class="mi">3</span><span class="o">:</span> <span class="s1">'three'</span><span class="p">};</span>
-<span class="kd">var</span> <span class="nx">html2</span> <span class="o">=</span> <span class="nx">template2</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">data2</span><span class="p">);</span>
-</pre>
-</div>
-
-
-<div class="highlight">
-<pre><span class="nt">&lt;ul&gt;</span>
-  <span class="nt">&lt;li&gt;</span>1: one<span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>2: two<span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>3: three<span class="nt">&lt;/li&gt;</span>
-<span class="nt">&lt;/ul&gt;</span>
-</pre>
-</div>
-
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">ul</span>&gt;
+  &lt;<span class="pl-ent">li</span>&gt;1: one&lt;/<span class="pl-ent">li</span>&gt;
+  &lt;<span class="pl-ent">li</span>&gt;2: two&lt;/<span class="pl-ent">li</span>&gt;
+  &lt;<span class="pl-ent">li</span>&gt;3: three&lt;/<span class="pl-ent">li</span>&gt;
+&lt;/<span class="pl-ent">ul</span>&gt;</pre></div>
 
 <p><code>each</code> can also take a static list:</p>
 
-<div class="highlight">
-<pre><span class="kd">with</span> <span class="p">(</span><span class="nx">Htmlr</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">template</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="nx">select</span><span class="p">(</span><span class="nx">each</span><span class="p">([</span><span class="s1">'North'</span><span class="p">,</span> <span class="s1">'South'</span><span class="p">,</span> <span class="s1">'East'</span><span class="p">,</span> <span class="s1">'West'</span><span class="p">])(</span>
-      <span class="nx">option</span><span class="p">(</span><span class="s1">'{0}'</span><span class="p">)</span>
-    <span class="p">)</span>
-  <span class="p">);</span>
-<span class="p">}</span>    
-<span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="nx">template</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
-</pre>
-</div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">with</span> (Htmlr) {
+  <span class="pl-k">var</span> template <span class="pl-k">=</span> (
+    <span class="pl-en">select</span>(<span class="pl-en">each</span>([<span class="pl-s"><span class="pl-pds">'</span>North<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>South<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>East<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>West<span class="pl-pds">'</span></span>])(
+      <span class="pl-en">option</span>(<span class="pl-s"><span class="pl-pds">'</span>{0}<span class="pl-pds">'</span></span>)
+    )
+  );
+}    
+<span class="pl-k">var</span> html <span class="pl-k">=</span> <span class="pl-smi">template</span>.<span class="pl-en">render</span>();</pre></div>
 
-
-<div class="highlight">
-<pre><span class="nt">&lt;select&gt;</span>
-  <span class="nt">&lt;option&gt;</span>North<span class="nt">&lt;/option&gt;</span>
-  <span class="nt">&lt;option&gt;</span>South<span class="nt">&lt;/option&gt;</span>
-  <span class="nt">&lt;option&gt;</span>East<span class="nt">&lt;/option&gt;</span>
-  <span class="nt">&lt;option&gt;</span>West<span class="nt">&lt;/option&gt;</span>
-<span class="nt">&lt;/select&gt;</span>
-</pre>
-</div>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">select</span>&gt;
+  &lt;<span class="pl-ent">option</span>&gt;North&lt;/<span class="pl-ent">option</span>&gt;
+  &lt;<span class="pl-ent">option</span>&gt;South&lt;/<span class="pl-ent">option</span>&gt;
+  &lt;<span class="pl-ent">option</span>&gt;East&lt;/<span class="pl-ent">option</span>&gt;
+  &lt;<span class="pl-ent">option</span>&gt;West&lt;/<span class="pl-ent">option</span>&gt;
+&lt;/<span class="pl-ent">select</span>&gt;</pre></div>
 </li>
 <li>
 <p>Includes the ability to extracts parts of the data object</p>
 
-<div class="highlight">
-<pre><span class="kd">with</span> <span class="p">(</span><span class="nx">Htmlr</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">template1</span> <span class="o">=</span> <span class="nx">div</span><span class="p">(</span><span class="nx">extract</span><span class="p">(</span><span class="s1">'error'</span><span class="p">)(</span>
-    <span class="s1">'Error'</span><span class="p">,</span>
-    <span class="nx">span</span><span class="p">(</span><span class="s1">'{number}'</span><span class="p">),</span>
-    <span class="s1">': '</span><span class="p">,</span>
-    <span class="nx">span</span><span class="p">(</span><span class="s1">'{message}'</span><span class="p">)</span>
-  <span class="p">));</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">data1</span> <span class="o">=</span> <span class="p">{</span><span class="nx">error</span><span class="o">:</span> <span class="p">{</span><span class="nx">number</span><span class="o">:</span> <span class="mi">42</span><span class="p">,</span> <span class="nx">message</span><span class="o">:</span> <span class="s1">'unknown question'</span><span class="p">}};</span>
-<span class="kd">var</span> <span class="nx">html1</span> <span class="o">=</span> <span class="nx">template1</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">data1</span><span class="p">);</span>
-</pre>
-</div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">with</span> (Htmlr) {
+  <span class="pl-k">var</span> template1 <span class="pl-k">=</span> <span class="pl-en">div</span>(<span class="pl-en">extract</span>(<span class="pl-s"><span class="pl-pds">'</span>error<span class="pl-pds">'</span></span>)(
+    <span class="pl-s"><span class="pl-pds">'</span>Error<span class="pl-pds">'</span></span>,
+    <span class="pl-en">span</span>(<span class="pl-s"><span class="pl-pds">'</span>{number}<span class="pl-pds">'</span></span>),
+    <span class="pl-s"><span class="pl-pds">'</span>: <span class="pl-pds">'</span></span>,
+    <span class="pl-en">span</span>(<span class="pl-s"><span class="pl-pds">'</span>{message}<span class="pl-pds">'</span></span>)
+  ));
+}
+<span class="pl-k">var</span> data1 <span class="pl-k">=</span> {error<span class="pl-k">:</span> {number<span class="pl-k">:</span> <span class="pl-c1">42</span>, message<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>unknown question<span class="pl-pds">'</span></span>}};
+<span class="pl-k">var</span> html1 <span class="pl-k">=</span> <span class="pl-smi">template1</span>.<span class="pl-en">render</span>(data1);</pre></div>
 
-
-<div class="highlight">
-<pre><span class="nt">&lt;div&gt;</span>Error <span class="nt">&lt;span&gt;</span>42<span class="nt">&lt;/span&gt;</span>: <span class="nt">&lt;span&gt;</span>unknown question<span class="nt">&lt;/span&gt;&lt;/div&gt;</span>
-</pre>
-</div>
-
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span>&gt;Error &lt;<span class="pl-ent">span</span>&gt;42&lt;/<span class="pl-ent">span</span>&gt;: &lt;<span class="pl-ent">span</span>&gt;unknown question&lt;/<span class="pl-ent">span</span>&gt;&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
 
 <p><code>extract</code> can reach into multiple levels of data structure</p>
 
-<div class="highlight">
-<pre><span class="kd">with</span> <span class="p">(</span><span class="nx">Htmlr</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">template2</span> <span class="o">=</span> <span class="nx">extract</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)(</span><span class="nx">div</span><span class="p">(</span><span class="s1">'{0}'</span><span class="p">));</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">data2</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]]];</span>
-<span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="nx">template2</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">data2</span><span class="p">);</span>
-</pre>
-</div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">with</span> (Htmlr) {
+  <span class="pl-k">var</span> template2 <span class="pl-k">=</span> <span class="pl-en">extract</span>(<span class="pl-c1">1</span>, <span class="pl-c1">0</span>)(<span class="pl-en">div</span>(<span class="pl-s"><span class="pl-pds">'</span>{0}<span class="pl-pds">'</span></span>));
+}
+<span class="pl-k">var</span> data2 <span class="pl-k">=</span> [[[<span class="pl-c1">0</span>, <span class="pl-c1">1</span>], [<span class="pl-c1">2</span>, <span class="pl-c1">3</span>]], [[<span class="pl-c1">4</span>, <span class="pl-c1">5</span>], [<span class="pl-c1">6</span>, <span class="pl-c1">7</span>]]];
+<span class="pl-k">var</span> html <span class="pl-k">=</span> <span class="pl-smi">template2</span>.<span class="pl-en">render</span>(data2);</pre></div>
 
-
-<div class="highlight">
-<pre><span class="nt">&lt;div&gt;</span>4<span class="nt">&lt;/div&gt;</span>
-</pre>
-</div>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span>&gt;4&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
 </li>
 </ol>
-      </section>
 
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/McLeopold">McLeopold</a> can be found on <a href="https://github.com/McLeopold/JavascriptHtmlr">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
-      </footer>
+<h2>
+<a id="known-issues" class="anchor" href="#known-issues" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Known Issues</h2>
 
+<p>None yet.  We need more testers!</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/McLeopold/JavascriptHtmlr/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/McLeopold/JavascriptHtmlr/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/McLeopold/JavascriptHtmlr"></a> is maintained by <a href="https://github.com/McLeopold">McLeopold</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
 
-    
+  
   </body>
 </html>
